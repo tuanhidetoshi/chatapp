@@ -67,16 +67,20 @@
       mes.appendChild(li);
     });
     // Welcome
-    socket.on("welcome", () => {
+    socket.on("welcome", num => {
       let li = document.createElement("LI");
-      let txt = document.createTextNode("new user has joined!!");
+      let txt = document.createTextNode(
+        `new user has joined!! and that make ${num}`
+      );
       li.appendChild(txt);
       mes.appendChild(li);
     });
     // Left
-    socket.on("disconnect", () => {
+    socket.on("disconnect", num => {
       let li = document.createElement("LI");
-      let txt = document.createTextNode("new user has left!!");
+      let txt = document.createTextNode(
+        `new user has left!! and that make ${num}`
+      );
       li.appendChild(txt);
       mes.appendChild(li);
     });

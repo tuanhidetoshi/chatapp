@@ -6,10 +6,14 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+let connectCounter = 0;
+
 io.on("connection", socket => {
-  io.emit("welcome");
+  connectCounter++;
+  io.emit("welcome", connectCounter);
   socket.on("disconnect", () => {
-    io.emit("disconnect");
+    connectCounter--;
+    io.emit("disconnect", connectCounter);
   });
   socket.on("chat message", msg => {
     io.emit("chat message", msg);
